@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "79078d63-d61f-453b-bab4-1c5aa863896b",
+		"name": "Atividade Avaliativa - Testes de API",
+		"description": "Atividade Avaliativa - Testes de API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://www.omdbapi.com/?t=Superman&apikey=db99e716",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "24a81e65-bd99-4c3f-b6f9-8d25b4a17b5a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Test 1 - Validate HTTP return\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Test 2 - Validate the response time\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Test 3 - Validate string on the body\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Canada\");",
+							"});",
+							"",
+							"pm.test(\"Test 4 - Validate JSON body check\", function () {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    tests[\"Test 5 - Verify if the title {} is Superman\"] = jsonData.Title === \"Superman\";",
+							"    tests[\"Test 6 - Verify the IMDB ID tt0078346\"] = jsonData.imdbID === \"tt0078346\";",
+							"    tests[\"Test 7 - Verify if Release date is December 15, 1978\"] = jsonData.Released === \"15 Dec 1978\";",
+							"    tests[\"Test 8 - Verify if it has 3 different genres\"] = jsonData.Genre === \"Action, Adventure, Drama\";",
+							"    tests[\"Test 9 - Verify if it the language is English\"] = jsonData.Language === \"English\";",
+							"    tests[\"Test 10 - Verify if the Production is Warner Bros. Pictures\"] = jsonData.Production === \"Warner Bros. Pictures\";",
+							"    tests[\"Test 11 - Verify if the Director is Richard Donner\"] = jsonData.Director === \"Richard Donner\";",
+							"    tests[\"Test 12 - Verify the runtime *143* \"] = jsonData.Runtime === \"143 min\";",
+							"});",
+							"",
+							"pm.test(\"Test 13 - Validate countries of production\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"UK\");",
+							"});",
+							"",
+							"pm.test(\"Test 14 - Validate oscars nomination, *3*\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"3 Oscars\");",
+							"});",
+							"",
+							"pm.test(\"Test 15 - Validate actors name, *Christopher Reeve*\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Christopher Reeve\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.omdbapi.com/?t=Superman&apikey=db99e716",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "t",
+							"value": "Superman"
+						},
+						{
+							"key": "apikey",
+							"value": "db99e716"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://www.omdbapi.com/?t=The Big Bang Theory&apikey=db99e716",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e887fbe-f331-466b-8bf7-8aa12fd6fb74",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Test 1 - Validate HTTP return\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Test 2 - Validate the response time\", function() {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"",
+							"pm.test(\"Test 3 - Validate string on the body\", function() {",
+							"    pm.expect(pm.response.text()).to.include(\"Jim Parsons\");",
+							"});",
+							"",
+							"pm.test(\"Test 4 - Validate JSON body check\", function() {",
+							"    var jsonData = JSON.parse(responseBody);",
+							"    tests[\"Test 5 - Verify if the title {} is The Big Bang Theory\"] = jsonData.Title === \"The Big Bang Theory\";",
+							"    tests[\"Test 6 - Verify the IMDB ID tt0898266\"] = jsonData.imdbID === \"tt0898266\";",
+							"    tests[\"Test 7 - Verify if Release date is May 1st, 2006\"] = jsonData.Released === \"01 May 2006\";",
+							"    tests[\"Test 8 - Verify if it has 2 different genres\"] = jsonData.Genre === \"Comedy, Romance\";",
+							"    tests[\"Test 10 - Verify if the type is series\"] = jsonData.Type === \"series\";",
+							"    tests[\"Test 11 - Verify if the Writer is Chuck Lorre, Bill Prady\"] = jsonData.Writer === \"Chuck Lorre, Bill Prady\";",
+							"    tests[\"Test 12 - Verify the runtime *22* \"] = jsonData.Runtime === \"22 min\";",
+							"});",
+							"",
+							"pm.test(\"Test 9 - Validate one of the languages, *Hindi*\", function() {",
+							"    pm.expect(pm.response.text()).to.include(\"Hindi\");",
+							"});",
+							"",
+							"pm.test(\"Test 13 - Validate countries of production, *USA*\", function() {",
+							"    pm.expect(pm.response.text()).to.include(\"USA\");",
+							"});",
+							"",
+							"pm.test(\"Test 14 - Validate nominations, *222*\", function() {",
+							"    pm.expect(pm.response.text()).to.include(\"222 nominations\");",
+							"});",
+							"",
+							"pm.test(\"Test 15 - Validate actors name, *Kaley Cuoco*\", function() {",
+							"    pm.expect(pm.response.text()).to.include(\"Kaley Cuoco\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.omdbapi.com/?t=The Big Bang Theory&apikey=db99e716",
+					"protocol": "http",
+					"host": [
+						"www",
+						"omdbapi",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "t",
+							"value": "The Big Bang Theory"
+						},
+						{
+							"key": "apikey",
+							"value": "db99e716"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
